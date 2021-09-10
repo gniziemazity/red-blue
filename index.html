@@ -14,26 +14,20 @@
          var CONTEXT;
 	 var ANGLE;
          
-         function main(){
+	 function main(){
          	CANVAS=document.getElementById("myCanvas");
-           CONTEXT=CANVAS.getContext("2d");
-             
+		CONTEXT=CANVAS.getContext("2d");
          	window.addEventListener("deviceorientation",onOrientationChange,false);
-         
+		 
+         	drawScene();
          	animate();
          }
          
-         
          function onOrientationChange(event){
          	ANGLE=event.beta;
-         }
-         
-         function animate(){
          	drawScene();
-         	window.requestAnimationFrame(animate);
          }
-         
-         
+	
          function drawScene(ctx){
          	CANVAS.width=window.innerWidth;
 		CANVAS.height=window.innerHeight;
@@ -45,9 +39,6 @@
          	CONTEXT.fillStyle="blue";
 		CONTEXT.fillRect(0,0,CANVAS.width,CANVAS.height);
          }
-         
-         			
-         		
       </script>
    </head>
    <body onload="main()">
