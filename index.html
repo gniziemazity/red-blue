@@ -1,0 +1,59 @@
+
+
+<html>
+	<head>
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<style>
+		
+body{
+	margin:0;
+	background:#222;
+	overflow:hidden;
+}
+
+		</style>
+		<script>
+		
+var CANVAS;
+var CONTEXT;
+
+function main(){
+	CANVAS=document.getElementById("myCanvas");
+  CONTEXT=CANVAS.getContext("2d");
+    
+	window.addEventListener("deviceorientation",onOrientationChange,false);
+
+	animate();
+}
+
+
+function onOrientationChange(event){
+	ANGLE=event.beta;
+}
+
+function animate(){
+	drawScene();
+	window.requestAnimationFrame(animate);
+}
+
+
+function drawScene(ctx){
+	CANVAS.width=window.innerWidth;
+  CANVAS.height=window.innerHeight;
+
+	CONTEXT.globalAlpha=Math.min(1,ANGLE/90);
+	CONTEXT.fillStyle="red";
+  CONTEXT.fillRect(0,0,CANVAS.width,CANVAS.height);
+	CONTEXT.globalAlpha=Math.max(0,1-ANGLE/90);
+	CONTEXT.fillStyle="blue";
+  CONTEXT.fillRect(0,0,CANVAS.width,CANVAS.height);
+}
+
+			
+		</script>
+	</head>
+	<body onload="main()">
+		<canvas id="myCanvas"></canvas>
+	</body>
+</html>
